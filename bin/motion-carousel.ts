@@ -44,7 +44,10 @@ if (command === "new") {
 	if (!target) fail("new: give a folder name");
 	const dest = resolve(target);
 	if (existsSync(dest)) fail(`new: ${dest} already exists`);
-	cpSync(join(PACKAGE_ROOT, "examples/basic"), dest, { recursive: true });
+	cpSync(join(PACKAGE_ROOT, "examples/basic"), dest, {
+		recursive: true,
+		filter: (src) => !src.split(/[\\/]/).includes("out"),
+	});
 	console.log(
 		`Created ${dest}\nNext: motion-carousel preview ${join(target, "deck.html")}`,
 	);
