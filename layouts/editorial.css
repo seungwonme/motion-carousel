@@ -1,0 +1,343 @@
+/* motion-carousel "editorial" layout: 1080x1350 cards with a top bar, a media box in the
+   middle and a text block below. Override the variables in the deck to restyle it. */
+:root {
+	--accent: #ff7a45;
+	--accent-soft: #f2d3c6;
+	--sans: "Pretendard", -apple-system, sans-serif;
+	--serif: Georgia, serif;
+	--mono: "SF Mono", Menlo, monospace;
+}
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+html,
+body {
+	background: #000;
+}
+body {
+	font-family: var(--sans);
+	word-break: keep-all;
+}
+.icon {
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	color: var(--accent);
+	vertical-align: -0.1em;
+	flex: none;
+}
+.icon svg {
+	width: 100%;
+	height: 100%;
+	display: block;
+	fill: currentColor;
+}
+.serif {
+	font-family: var(--serif);
+	font-weight: 700;
+	letter-spacing: -0.02em;
+}
+.slide {
+	position: relative;
+	width: 1080px;
+	height: 1350px;
+	overflow: hidden;
+	display: none;
+	background: #fff;
+	color: #111;
+}
+.slide.on {
+	display: block;
+}
+body.preview {
+	display: grid;
+	grid-template-columns: repeat(4, 270px);
+	gap: 16px;
+	padding: 16px;
+}
+body.preview .slide {
+	display: block;
+	transform: scale(0.25);
+	transform-origin: 0 0;
+	margin-right: -810px;
+	margin-bottom: -1012px;
+}
+
+/* top bar, added by the runtime unless the slide has data-noframe */
+.top {
+	position: absolute;
+	left: 64px;
+	right: 64px;
+	top: 52px;
+	height: 96px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	z-index: 5;
+}
+.brand {
+	display: flex;
+	align-items: center;
+	gap: 18px;
+	font: 700 30px / 1 var(--sans);
+}
+.brand img {
+	width: 96px;
+	height: 96px;
+}
+.count {
+	font: 600 26px / 1 var(--mono);
+	color: #8a8a8a;
+}
+.dark .brand {
+	color: #fff;
+}
+.dark .count {
+	color: #cfcfcf;
+}
+
+/* cover: full-bleed photo, bottom gradient, hook */
+.cover {
+	background: #000;
+	color: #fff;
+}
+.cover .photo {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: 70% center;
+}
+.cover .shade {
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(
+		180deg,
+		#0000 0%,
+		#0000 30%,
+		#00000066 52%,
+		#000000e6 76%,
+		#000 100%
+	);
+}
+.cover .tag {
+	position: absolute;
+	left: 72px;
+	bottom: 560px;
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	font: 600 30px / 1 var(--mono);
+	color: var(--accent-soft);
+	letter-spacing: 0.04em;
+}
+.cover .tag .icon {
+	width: 44px;
+	height: 44px;
+}
+.cover h1 {
+	position: absolute;
+	left: 72px;
+	right: 72px;
+	bottom: 170px;
+	font: 800 104px / 1.12 var(--sans);
+	letter-spacing: -0.045em;
+}
+.cover h1 .serif {
+	font-size: 118px;
+	letter-spacing: -0.03em;
+}
+.cover h1 em {
+	font-style: normal;
+	color: var(--accent);
+}
+.swipe {
+	position: absolute;
+	right: 72px;
+	bottom: 76px;
+	font: 600 30px / 1 var(--mono);
+	color: #fff;
+	opacity: 0.85;
+	letter-spacing: 0.02em;
+}
+
+/* content: media box (image or recording) + description */
+.box {
+	position: absolute;
+	left: 64px;
+	right: 64px;
+	top: 196px;
+	height: 551px;
+	background: #1e1f29;
+	border-radius: 24px;
+	overflow: hidden;
+}
+.box video,
+.box img {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	display: block;
+}
+.box.paper {
+	background: #faf9f6;
+}
+.box img.cover-fit {
+	object-fit: cover;
+}
+.desc {
+	position: absolute;
+	left: 72px;
+	right: 72px;
+	top: 812px;
+}
+.desc h2 {
+	font: 800 80px / 1.1 var(--sans);
+	letter-spacing: -0.04em;
+}
+.desc h2 em {
+	font-style: normal;
+	color: var(--accent);
+}
+.desc h2 .serif {
+	font-size: 1.04em;
+}
+.desc p {
+	font: 500 38px / 1.45 var(--sans);
+	color: #555;
+	margin-top: 28px;
+}
+.desc p b {
+	color: #111;
+}
+
+/* person card in the box area */
+.who {
+	position: absolute;
+	left: 64px;
+	right: 64px;
+	top: 196px;
+	height: 551px;
+	border-radius: 24px;
+	background: #f2f0eb;
+	display: flex;
+	align-items: center;
+	gap: 48px;
+	padding: 0 64px;
+}
+.who img {
+	width: 300px;
+	height: 300px;
+	border-radius: 50%;
+	object-fit: cover;
+	flex: none;
+}
+.who .name {
+	font: 800 64px / 1.1 var(--sans);
+	letter-spacing: -0.03em;
+}
+.who .role {
+	font: 600 34px / 1.5 var(--sans);
+	color: #444;
+	margin-top: 18px;
+}
+.who .role span {
+	display: inline-block;
+	background: #111;
+	color: #fff;
+	padding: 4px 14px;
+	border-radius: 8px;
+	margin-top: 10px;
+}
+
+/* one big number */
+.big {
+	font: 700 170px / 1 var(--serif);
+	letter-spacing: -0.04em;
+}
+.big small {
+	font: 800 72px / 1 var(--sans);
+	letter-spacing: -0.04em;
+	margin-left: 12px;
+}
+
+/* labelled list */
+.steps {
+	list-style: none;
+	margin-top: 26px;
+}
+.steps li {
+	font: 600 36px / 1.4 var(--sans);
+	padding: 14px 0;
+	border-top: 2px solid #e4e4e4;
+	display: flex;
+	gap: 22px;
+}
+.steps li b {
+	flex: none;
+	width: 160px;
+	font-weight: 800;
+}
+.steps li.hot b {
+	color: var(--accent);
+}
+
+/* quote with a small label above it */
+.desc .quote {
+	font: 700 76px / 1.2 var(--serif);
+	letter-spacing: -0.03em;
+	color: var(--accent);
+	margin-top: 10px;
+}
+.desc .kicker {
+	font: 600 30px / 1 var(--mono);
+	color: #8a8a8a;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+.desc .kicker .icon {
+	width: 34px;
+	height: 34px;
+}
+
+/* call to action: black, large type, one oversized icon */
+.cta {
+	background: #000;
+	color: #fff;
+}
+.cta .bigicon {
+	position: absolute;
+	right: -150px;
+	top: -120px;
+	width: 760px;
+	height: 760px;
+	opacity: 0.95;
+}
+.cta h2 {
+	position: absolute;
+	left: 80px;
+	right: 80px;
+	top: 330px;
+	font: 900 128px / 1.1 var(--sans);
+	letter-spacing: -0.05em;
+}
+.cta h2 em {
+	font-style: normal;
+	font-family: var(--serif);
+	font-weight: 700;
+	font-size: 168px;
+	color: var(--accent);
+	letter-spacing: -0.02em;
+}
+.cta p {
+	position: absolute;
+	left: 80px;
+	right: 80px;
+	top: 1100px;
+	font: 600 42px / 1.45 var(--sans);
+	color: #d6d6d6;
+}

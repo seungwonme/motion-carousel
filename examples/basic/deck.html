@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>motion-carousel starter</title>
+<link rel="stylesheet" href="/_mc/layouts/editorial.css">
+<style>
+  /* Restyle the layout here. */
+  :root { --accent: #ff7a45; }
+</style>
+</head>
+<body>
+
+<section class="slide cover dark" data-dur="5" data-noframe>
+  <div class="shade" style="background: radial-gradient(circle at 70% 30%, #3b2a22, #000 70%)"></div>
+  <div class="tag" data-in="0.1"><span class="icon" data-icon="spark"></span>MOTION CAROUSEL</div>
+  <h1 data-in="0.2">Your tests pass.<br>Is it <em>done</em>?<br><span class="serif">One question.</span></h1>
+  <div class="swipe" data-in="1.2">Swipe &rarr;</div>
+</section>
+
+<section class="slide" data-video="assets/tests-pass.mp4">
+  <div class="box"><video muted playsinline src="assets/tests-pass.mp4"></video></div>
+  <div class="desc">
+    <h2>3 tests, 3 passed.<br>Ship it?</h2>
+    <p>A real terminal recording goes into the box. <b>The renderer keeps its timing and colors.</b></p>
+  </div>
+</section>
+
+<section class="slide" data-dur="5">
+  <div class="desc" style="top: 300px">
+    <div class="big" data-in="0.1">5.5M<small>views</small></div>
+    <ul class="steps" data-in="0.5">
+      <li><b>data-dur</b><span>makes a text slide a clip of that many seconds</span></li>
+      <li><b>data-in</b><span>fades an element in, starting at that second</span></li>
+      <li class="hot"><b>data-video</b><span>puts a recording into the slide's .box</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="slide cta dark" data-dur="5" data-noframe>
+  <span class="icon bigicon" data-icon="spark" aria-hidden="true"></span>
+  <h2 data-in="0.2">Follow<br>and comment<br><em>"deck"</em></h2>
+  <p data-in="0.9">Last slide: no top bar, black background, one call to action.</p>
+</section>
+
+<template id="icon-spark"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 0 61 39 100 50 61 61 50 100 39 61 0 50 39 39Z"/></svg></template>
+
+<script>
+  window.CAROUSEL = { brand: { name: "Your brand" } };
+</script>
+<script src="/_mc/runtime/carousel.js"></script>
+</body>
+</html>

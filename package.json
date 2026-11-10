@@ -1,0 +1,29 @@
+{
+  "name": "motion-carousel",
+  "version": "0.1.0",
+  "description": "Render HTML carousel decks into 1080x1350 MP4 and PNG slides, with real screen recordings placed into the layout.",
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "motion-carousel": "bin/motion-carousel.ts"
+  },
+  "files": [
+    "bin",
+    "src",
+    "runtime",
+    "layouts"
+  ],
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check --error-on-warnings bin src runtime layouts",
+    "example": "bun bin/motion-carousel.ts render examples/basic/deck.html"
+  },
+  "dependencies": {
+    "playwright-core": "^1.64.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.6.4",
+    "@types/bun": "^1.4.4",
+    "typescript": "^7.0.2"
+  }
+}
